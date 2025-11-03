@@ -1,0 +1,74 @@
+{
+    "name": "university-moratuwa/blog-hut",
+    "description": "A modern, full-featured blogging platform built with PHP and MySQL for University of Moratuwa IN2120 Web Programming Project",
+    "type": "project",
+    "keywords": [
+        "blog",
+        "php",
+        "mysql",
+        "cms",
+        "bootstrap",
+        "university-project"
+    ],
+    "homepage": "http://localhost/BLOG_APP",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lasith Undulanga",
+            "email": "ludulanga@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "ext-gd": "*",
+        "ext-fileinfo": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "BlogHut\\": "src/"
+        },
+        "files": [
+            "config/database.php",
+            "config/constants.php",
+            "includes/helper.php",
+            "includes/post_function.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BlogHut\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "check": [
+            "@test"
+        ],
+        "post-install-cmd": [
+            "@php -r \"if (!file_exists('.env')) { copy('.env.example', '.env'); echo 'Created .env file from .env.example'; }\""
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "platform": {
+            "php": "8.0"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.0-dev"
+        }
+    }
+}

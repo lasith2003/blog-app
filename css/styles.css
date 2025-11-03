@@ -1,0 +1,596 @@
+/**
+ * ================================================================
+ * BLOG HUT - Main Stylesheet
+ * University of Moratuwa - IN2120 Web Programming Project
+ * ================================================================
+ * 
+ * Modern, clean design inspired by Medium.com
+ * Features: Dark mode support, smooth animations, responsive design
+ */
+
+/* ================================================================
+   ROOT VARIABLES & THEME
+   ================================================================ */
+:root {
+    --primary-color: #FFB100;
+    --secondary-color: #2C2C2C;
+    --background-color: #F8F9FA;
+    --text-color: #333333;
+    --text-muted: #6c757d;
+    --border-color: #dee2e6;
+    --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --card-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --transition: all 0.3s ease;
+}
+
+[data-theme="dark"] {
+    --primary-color: #FFB100;
+    --secondary-color: #E5E5E5;
+    --background-color: #1a1a1a;
+    --text-color: #E5E5E5;
+    --text-muted: #999999;
+    --border-color: #3a3a3a;
+    --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --card-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* ================================================================
+   GLOBAL STYLES
+   ================================================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: var(--transition);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: #e09f00;
+}
+
+/* ================================================================
+   TYPOGRAPHY
+   ================================================================ */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--text-color);
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* ================================================================
+   NAVIGATION
+   ================================================================ */
+.navbar {
+    background-color: var(--background-color) !important;
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color) !important;
+}
+
+.nav-link {
+    color: var(--text-color) !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    transition: var(--transition);
+}
+
+.nav-link:hover {
+    color: var(--primary-color) !important;
+}
+
+.navbar-toggler {
+    border-color: var(--border-color);
+}
+
+/* ================================================================
+   HERO SECTION
+   ================================================================ */
+.hero-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, var(--background-color) 0%, #ffffff 100%);
+}
+
+[data-theme="dark"] .hero-section {
+    background: linear-gradient(135deg, var(--background-color) 0%, #2a2a2a 100%);
+}
+
+.hero-image-wrapper img {
+    height: auto;
+    width: auto;
+    border-radius: 20px;
+    box-shadow: var(--card-shadow-hover);
+}
+
+.min-vh-75 {
+    min-height: 75vh;
+}
+
+/* ================================================================
+   CARDS
+   ================================================================ */
+.card {
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+}
+
+.card:hover {
+    box-shadow: var(--card-shadow-hover);
+}
+
+.post-card {
+    overflow: hidden;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+}
+
+.post-card img {
+    transition: var(--transition);
+}
+
+.post-card:hover img {
+    transform: scale(1.05);
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow-hover);
+}
+
+/* ================================================================
+   BUTTONS
+   ================================================================ */
+.btn {
+    border-radius: 8px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #000;
+}
+
+.btn-primary:hover {
+    background-color: #e09f00;
+    border-color: #e09f00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 177, 0, 0.3);
+}
+
+.btn-outline-primary {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    color: #000;
+}
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+.footer {
+    background-color: var(--secondary-color);
+    margin-top: auto;
+}
+
+.footer a {
+    color: var(--text-muted);
+    transition: var(--transition);
+}
+
+.footer a:hover,
+.hover-primary:hover {
+    color: var(--primary-color) !important;
+}
+
+/* ================================================================
+   SCROLL TO TOP BUTTON
+   ================================================================ */
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: #000;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    box-shadow: var(--card-shadow);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.scroll-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-to-top:hover {
+    background-color: #e09f00;
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow-hover);
+}
+
+/* ================================================================
+   POST CONTENT STYLES
+   ================================================================ */
+.post-content {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.post-content p {
+    margin-bottom: 1.5rem;
+}
+
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.post-content blockquote {
+    border-left: 4px solid var(--primary-color);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: var(--text-muted);
+}
+
+.post-content a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.post-content code {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+}
+
+/* ================================================================
+   REACTIONS
+   ================================================================ */
+.reaction-btn {
+    transition: var(--transition);
+}
+
+.reaction-btn:hover {
+    transform: scale(1.1);
+}
+
+.reaction-btn.active {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: #000 !important;
+}
+
+.reaction-count {
+    margin-left: 0.5rem;
+    font-weight: 600;
+}
+
+/* ================================================================
+   COMMENTS
+   ================================================================ */
+.comment-item {
+    transition: var(--transition);
+}
+
+.comment-item:hover {
+    background-color: rgba(255, 177, 0, 0.05);
+}
+
+/* ================================================================
+   BADGES
+   ================================================================ */
+.badge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+/* ================================================================
+   FORMS
+   ================================================================ */
+.form-control,
+.form-select {
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    padding: 0.75rem 1rem;
+    transition: var(--transition);
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(255, 177, 0, 0.25);
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-label {
+    font-weight: 500;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+/* ================================================================
+   ALERTS
+   ================================================================ */
+.alert {
+    border-radius: 8px;
+    border: none;
+}
+
+.alert-dismissible .btn-close {
+    padding: 1rem;
+}
+
+/* ================================================================
+   CATEGORY CARDS
+   ================================================================ */
+.category-card {
+    display: block;
+    transition: var(--transition);
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+}
+
+.category-card .card {
+    height: 100%;
+}
+
+/* ================================================================
+   STATISTICS CARDS
+   ================================================================ */
+.stat-card {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.stat-item {
+    transition: var(--transition);
+}
+
+.stat-item:hover {
+    transform: scale(1.05);
+}
+
+/* ================================================================
+   PAGINATION
+   ================================================================ */
+.pagination .page-link {
+    color: var(--primary-color);
+    border-color: var(--border-color);
+    background-color: var(--background-color);
+    transition: var(--transition);
+}
+
+.pagination .page-link:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #000;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #000;
+}
+
+.pagination .page-item.disabled .page-link {
+    background-color: var(--background-color);
+    border-color: var(--border-color);
+    color: var(--text-muted);
+}
+
+/* ================================================================
+   DARK MODE SPECIFIC ADJUSTMENTS
+   ================================================================ */
+[data-theme="dark"] .bg-white {
+    background-color: #2a2a2a !important;
+}
+
+[data-theme="dark"] .bg-light {
+    background-color: #1f1f1f !important;
+}
+
+[data-theme="dark"] .navbar-light {
+    background-color: #2a2a2a !important;
+}
+
+[data-theme="dark"] .navbar-light .navbar-brand,
+[data-theme="dark"] .navbar-light .navbar-nav .nav-link {
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .text-dark {
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .text-muted {
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .card {
+    background-color: #2a2a2a !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .card-body {
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .btn-outline-secondary {
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .btn-outline-secondary:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #000;
+}
+
+[data-theme="dark"] .table {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .table-light {
+    background-color: #2a2a2a;
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .border {
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .modal-content {
+    background-color: #2a2a2a;
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .dropdown-menu {
+    background-color: #2a2a2a;
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .dropdown-item {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .dropdown-item:hover {
+    background-color: rgba(255, 177, 0, 0.1);
+}
+
+/* ================================================================
+   UTILITY CLASSES
+   ================================================================ */
+.opacity-50 {
+    opacity: 0.5;
+}
+
+.shadow-sm {
+    box-shadow: var(--card-shadow) !important;
+}
+
+.shadow {
+    box-shadow: var(--card-shadow-hover) !important;
+}
+
+.rounded-4 {
+    border-radius: 1.5rem !important;
+}
+
+/* ================================================================
+   ANIMATIONS
+   ================================================================ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* ================================================================
+   LOADING SPINNER
+   ================================================================ */
+.spinner-border {
+    color: var(--primary-color);
+}
+
+/* ================================================================
+   RESPONSIVE ADJUSTMENTS (Mobile First)
+   ================================================================ */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 40px 0;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .post-content {
+        font-size: 1rem;
+    }
+    
+    .scroll-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+    }
+}

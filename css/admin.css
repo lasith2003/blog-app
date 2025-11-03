@@ -1,0 +1,456 @@
+/**
+ * ================================================================
+ * BLOG HUT - Admin Panel Stylesheet
+ * University of Moratuwa - IN2120 Web Programming Project
+ * ================================================================
+ * 
+ * Styles for admin dashboard and management pages
+ * Clean, professional admin interface
+ */
+
+/* ================================================================
+   ADMIN LAYOUT
+   ================================================================ */
+.container-fluid {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ================================================================
+   BREADCRUMB
+   ================================================================ */
+.breadcrumb {
+    background-color: transparent;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.breadcrumb-item a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.breadcrumb-item a:hover {
+    color: #e09f00;
+}
+
+.breadcrumb-item.active {
+    color: var(--text-muted);
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: var(--text-muted);
+}
+
+/* ================================================================
+   STATISTICS CARDS
+   ================================================================ */
+.stat-card {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-card .card-body {
+    padding: 1.5rem;
+}
+
+.stat-card h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.stat-card h6 {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+
+.stat-card .card-footer {
+    padding: 0.75rem 1.5rem;
+}
+
+.stat-card .card-footer a {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Stat Card Colors */
+.stat-card.bg-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.stat-card.bg-success {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.stat-card.bg-info {
+    background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+}
+
+.stat-card.bg-warning {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+/* ================================================================
+   ADMIN TABLES
+   ================================================================ */
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--border-color);
+    padding: 1rem;
+}
+
+.table tbody td {
+    vertical-align: middle;
+    padding: 1rem;
+}
+
+.table-hover tbody tr {
+    transition: all 0.3s ease;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(255, 177, 0, 0.05);
+    transform: scale(1.01);
+}
+
+[data-theme="dark"] .table-hover tbody tr:hover {
+    background-color: rgba(255, 177, 0, 0.1);
+}
+
+/* ================================================================
+   CARD HEADERS
+   ================================================================ */
+.card-header {
+    background-color: var(--background-color);
+    border-bottom: 2px solid var(--border-color);
+    padding: 1.25rem 1.5rem;
+}
+
+.card-header h5 {
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+/* ================================================================
+   ACTION BUTTONS
+   ================================================================ */
+.btn-group-sm .btn {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    color: #000;
+}
+
+.btn-outline-success:hover {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-outline-warning:hover {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-outline-info:hover {
+    background-color: #17a2b8;
+    color: #fff;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+/* ================================================================
+   FILTER CARDS
+   ================================================================ */
+.card-body .form-label {
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-body .form-control,
+.card-body .form-select {
+    font-size: 0.9rem;
+}
+
+/* ================================================================
+   BADGES IN TABLES
+   ================================================================ */
+.badge {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+    font-weight: 600;
+}
+
+.badge.bg-success {
+    background-color: #28a745 !important;
+}
+
+.badge.bg-warning {
+    background-color: #ffc107 !important;
+}
+
+.badge.bg-danger {
+    background-color: #dc3545 !important;
+}
+
+.badge.bg-info {
+    background-color: #17a2b8 !important;
+}
+
+.badge.bg-secondary {
+    background-color: #6c757d !important;
+}
+
+/* ================================================================
+   CATEGORY CARDS (Grid View)
+   ================================================================ */
+.category-card-grid .card {
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.category-card-grid .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* ================================================================
+   MODAL CUSTOMIZATION
+   ================================================================ */
+.modal-header {
+    background-color: var(--background-color);
+    border-bottom: 2px solid var(--border-color);
+    padding: 1.25rem 1.5rem;
+}
+
+.modal-header h5 {
+    font-weight: 600;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    background-color: var(--background-color);
+    border-top: 1px solid var(--border-color);
+    padding: 1rem 1.5rem;
+}
+
+[data-theme="dark"] .modal-content {
+    background-color: #2a2a2a;
+}
+
+/* ================================================================
+   PAGINATION IN ADMIN
+   ================================================================ */
+.card-footer .pagination {
+    margin: 0;
+}
+
+.card-footer {
+    background-color: var(--background-color);
+    border-top: 1px solid var(--border-color);
+}
+
+/* ================================================================
+   QUICK ACTIONS CARD
+   ================================================================ */
+.quick-actions .btn {
+    justify-content: flex-start;
+    text-align: left;
+}
+
+/* ================================================================
+   LIST GROUP IN ADMIN
+   ================================================================ */
+.list-group-item {
+    background-color: var(--background-color);
+    border-color: var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: rgba(255, 177, 0, 0.05);
+}
+
+[data-theme="dark"] .list-group-item {
+    background-color: #2a2a2a;
+}
+
+[data-theme="dark"] .list-group-item:hover {
+    background-color: rgba(255, 177, 0, 0.1);
+}
+
+/* ================================================================
+   ADMIN ICONS
+   ================================================================ */
+.admin-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+/* ================================================================
+   EMPTY STATES
+   ================================================================ */
+.empty-state {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.empty-state i {
+    font-size: 4rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.empty-state h5 {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+/* ================================================================
+   STATUS INDICATORS
+   ================================================================ */
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.status-indicator.online {
+    background-color: #28a745;
+    box-shadow: 0 0 8px rgba(40, 167, 69, 0.5);
+}
+
+.status-indicator.offline {
+    background-color: #6c757d;
+}
+
+.status-indicator.away {
+    background-color: #ffc107;
+}
+
+/* ================================================================
+   TRENDING INDICATOR
+   ================================================================ */
+.trending-indicator {
+    display: inline-flex;
+    align-items: center;
+    color: #28a745;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.trending-indicator i {
+    margin-right: 0.25rem;
+}
+
+/* ================================================================
+   ADMIN AVATAR
+   ================================================================ */
+.admin-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* ================================================================
+   RESPONSIVE ADMIN LAYOUT
+   ================================================================ */
+@media (max-width: 1200px) {
+    .stat-card h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .table-responsive {
+        font-size: 0.875rem;
+    }
+    
+    .btn-group-sm .btn {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .stat-card {
+        margin-bottom: 1rem;
+    }
+    
+    .stat-card h2 {
+        font-size: 1.75rem;
+    }
+    
+    .card-header h5 {
+        font-size: 1rem;
+    }
+    
+    .table thead {
+        display: none;
+    }
+    
+    .table td {
+        display: block;
+        text-align: right;
+        padding: 0.5rem;
+    }
+    
+    .table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+    }
+    
+    .container-fluid {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .modal-dialog {
+        margin: 0.5rem;
+    }
+    
+    .breadcrumb {
+        font-size: 0.875rem;
+    }
+}

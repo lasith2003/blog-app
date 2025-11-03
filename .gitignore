@@ -1,0 +1,31 @@
+#Ignore system files
+.DS_Store
+Thumbs.db
+
+#Environment & config
+.env
+config/constants.php
+config/database.php
+
+#Dependencies
+node_modules/
+vendor/
+
+#Logs & cache
+*.log
+tmp/
+cache/
+.idea/
+.vscode/
+
+#Uploads & generated media
+uploads/
+images/default-avatar.png
+
+#Backups or exports
+*.sql
+*.zip
+*.rar
+
+#OS specific
+desktop.ini

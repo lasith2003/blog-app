@@ -1,0 +1,530 @@
+/**
+ * ================================================================
+ * BLOG HUT - Responsive Stylesheet
+ * University of Moratuwa - IN2120 Web Programming Project
+ * ================================================================
+ * 
+ * Mobile-first responsive design
+ * Breakpoints: 576px (sm), 768px (md), 992px (lg), 1200px (xl)
+ */
+
+/* ================================================================
+   LARGE DESKTOP (1200px and up)
+   ================================================================ */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+    
+    .hero-section h1 {
+        font-size: 3.5rem;
+    }
+}
+
+/* ================================================================
+   DESKTOP (992px to 1199px)
+   ================================================================ */
+@media (max-width: 1199px) {
+    .hero-section h1 {
+        font-size: 3rem;
+    }
+    
+    .post-content {
+        font-size: 1.0625rem;
+    }
+}
+
+/* ================================================================
+   TABLET (768px to 991px)
+   ================================================================ */
+@media (max-width: 991px) {
+    /* Navigation */
+    .navbar-collapse {
+        margin-top: 1rem;
+        padding: 1rem 0;
+    }
+    
+    .nav-item {
+        margin: 0.25rem 0;
+    }
+    
+    /* Hero Section */
+    .hero-section {
+        padding: 60px 0;
+    }
+    
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-section .lead {
+        font-size: 1rem;
+    }
+    
+    /* Cards */
+    .card-body {
+        padding: 1.25rem;
+    }
+    
+    /* Post Content */
+    .post-content {
+        font-size: 1rem;
+    }
+    
+    .post-content h2 {
+        font-size: 1.75rem;
+    }
+    
+    .post-content h3 {
+        font-size: 1.5rem;
+    }
+    
+    /* Sidebar */
+    .sidebar {
+        margin-top: 2rem;
+    }
+    
+    /* Footer */
+    .footer .col-md-3,
+    .footer .col-md-2 {
+        margin-bottom: 2rem;
+    }
+    
+    /* Admin Statistics */
+    .stat-card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* ================================================================
+   MOBILE (576px to 767px)
+   ================================================================ */
+@media (max-width: 767px) {
+    /* Typography */
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.75rem;
+    }
+    
+    h3 {
+        font-size: 1.5rem;
+    }
+    
+    h4 {
+        font-size: 1.25rem;
+    }
+    
+    /* Hero Section */
+    .hero-section {
+        padding: 40px 0;
+    }
+    
+    .hero-section h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-section .lead {
+        font-size: 0.95rem;
+    }
+    
+    .hero-section .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .hero-image-wrapper {
+        margin-top: 2rem;
+    }
+    
+    /* Navigation */
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+    
+    .navbar {
+        padding: 0.75rem 0;
+    }
+    
+    /* Cards */
+    .card {
+        margin-bottom: 1rem;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .post-card .card-title {
+        font-size: 1.125rem;
+    }
+    
+    /* Post View */
+    .post-header h1 {
+        font-size: 1.75rem;
+    }
+    
+    .post-content {
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+    
+    .post-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .post-content h3 {
+        font-size: 1.25rem;
+    }
+    
+    /* Buttons */
+    .btn-group {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn-group .btn {
+        border-radius: 0.375rem !important;
+        margin-bottom: 0.5rem;
+    }
+    
+    .btn-group .btn:last-child {
+        margin-bottom: 0;
+    }
+    
+    /* Forms */
+    .form-control,
+    .form-select {
+        font-size: 1rem;
+    }
+    
+    /* Pagination */
+    .pagination {
+        font-size: 0.875rem;
+    }
+    
+    .pagination .page-link {
+        padding: 0.375rem 0.75rem;
+    }
+    
+    /* Profile */
+    .profile-header img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    /* Statistics Cards */
+    .stat-card h2 {
+        font-size: 2rem;
+    }
+    
+    .stat-card h6 {
+        font-size: 0.8rem;
+    }
+    
+    /* Tables */
+    .table-responsive {
+        font-size: 0.85rem;
+    }
+    
+    .table td,
+    .table th {
+        padding: 0.5rem;
+    }
+    
+    /* Modals */
+    .modal-body {
+        padding: 1rem;
+    }
+    
+    /* Admin Dashboard */
+    .breadcrumb {
+        font-size: 0.85rem;
+    }
+    
+    /* Comments */
+    .comment-item .rounded-circle {
+        width: 35px;
+        height: 35px;
+    }
+    
+    /* Reactions */
+    .reaction-btn {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+    }
+    
+    /* Scroll to Top */
+    .scroll-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 1rem;
+    }
+    
+    /* Search Bar */
+    .search-bar {
+        margin-bottom: 1rem;
+    }
+    
+    /* Category Grid */
+    .category-card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* ================================================================
+   SMALL MOBILE (575px and below)
+   ================================================================ */
+@media (max-width: 575px) {
+    /* Container Padding */
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    /* Typography */
+    h1 {
+        font-size: 1.75rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    /* Hero Section */
+    .hero-section {
+        padding: 30px 0;
+    }
+    
+    .hero-section h1 {
+        font-size: 1.75rem;
+    }
+    
+    .hero-section .lead {
+        font-size: 0.9rem;
+    }
+    
+    /* Cards */
+    .card {
+        border-radius: 8px;
+    }
+    
+    .card-body {
+        padding: 0.875rem;
+    }
+    
+    .post-card img {
+        height: 180px;
+    }
+    
+    /* Navbar */
+    .navbar-brand {
+        font-size: 1.125rem;
+    }
+    
+    .navbar-toggler {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+    
+    /* Buttons */
+    .btn {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.9rem;
+    }
+    
+    .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .btn-sm {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.8rem;
+    }
+    
+    /* Forms */
+    .form-label {
+        font-size: 0.9rem;
+    }
+    
+    .form-control,
+    .form-select {
+        padding: 0.625rem 0.875rem;
+        font-size: 0.95rem;
+    }
+    
+    /* Auth Pages */
+    .auth-card {
+        padding: 1.5rem 1rem;
+        border-radius: 12px;
+    }
+    
+    .auth-card h2 {
+        font-size: 1.5rem;
+    }
+    
+    /* Post Content */
+    .post-content {
+        font-size: 0.9rem;
+    }
+    
+    .post-content img {
+        margin: 1.5rem 0;
+    }
+    
+    /* Profile */
+    .profile-header img {
+        width: 80px;
+        height: 80px;
+    }
+    
+    /* Statistics */
+    .stat-card h2 {
+        font-size: 1.75rem;
+    }
+    
+    .stat-card .card-body {
+        padding: 1rem;
+    }
+    
+    /* Tables */
+    .table {
+        font-size: 0.8rem;
+    }
+    
+    /* Admin Action Buttons */
+    .btn-group-sm .btn {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    /* Badges */
+    .badge {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.6rem;
+    }
+    
+    /* Modals */
+    .modal-dialog {
+        margin: 0.5rem;
+    }
+    
+    .modal-header,
+    .modal-footer {
+        padding: 1rem;
+    }
+    
+    /* Pagination */
+    .pagination .page-link {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    /* Comments */
+    .comment-item {
+        padding: 0.75rem;
+    }
+    
+    .comment-item .rounded-circle {
+        width: 30px;
+        height: 30px;
+    }
+    
+    /* Footer */
+    .footer {
+        font-size: 0.875rem;
+        padding: 2rem 0;
+    }
+    
+    .footer .social-links .btn {
+        width: 36px;
+        height: 36px;
+        font-size: 0.875rem;
+    }
+}
+
+/* ================================================================
+   LANDSCAPE MOBILE (480px and below)
+   ================================================================ */
+@media (max-width: 480px) {
+    .hero-section h1 {
+        font-size: 1.5rem;
+    }
+    
+    .display-3 {
+        font-size: 2rem;
+    }
+    
+    .display-5 {
+        font-size: 1.75rem;
+    }
+}
+
+/* ================================================================
+   PRINT STYLES
+   ================================================================ */
+@media print {
+    .navbar,
+    .footer,
+    .scroll-to-top,
+    .btn,
+    .breadcrumb,
+    .reactions-section,
+    .comments-section {
+        display: none !important;
+    }
+    
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+    
+    .post-content {
+        font-size: 12pt;
+    }
+    
+    .card {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+    
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
+}
+
+/* ================================================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ================================================================ */
+@media (hover: none) and (pointer: coarse) {
+    /* Increase touch targets */
+    .btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .nav-link {
+        padding: 0.75rem 1rem !important;
+    }
+    
+    .form-control {
+        min-height: 44px;
+    }
+    
+    /* Remove hover effects on touch devices */
+    .card:hover {
+        transform: none;
+    }
+    
+    .post-card:hover img {
+        transform: none;
+    }
+}
