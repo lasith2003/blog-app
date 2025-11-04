@@ -46,5 +46,5 @@ session_start();
 setFlashMessage('You have been logged out successfully. See you soon, ' . $username . '!', 'success');
 
 // Redirect to login page
-redirect('auth/login.php');
+redirect('/BLOG_APP/index.php');
 ?>
