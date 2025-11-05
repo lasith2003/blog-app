@@ -1,21 +1,6 @@
 <?php
-/**
- * ================================================================
+/*
  * BLOG HUT - Helper Functions
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
- * This file contains utility functions used throughout the application:
- * - Session management
- * - Security functions (XSS, CSRF)
- * - Input validation and sanitization
- * - Date/time formatting
- * - File upload handling
- * - URL helpers
- * - Alert/notification helpers
- * 
- * @package BlogHut
- * @author Your Name
  */
 
 // Start session if not already started
@@ -138,7 +123,6 @@ function requireAdmin() {
         exit;
     }
 }
-
 // ================================================================
 // SECURITY FUNCTIONS
 // ================================================================
@@ -150,7 +134,7 @@ function requireAdmin() {
  * @return string Sanitized data
  */
 function sanitize($data) {
-    return htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
+    return htmlspecialchars((string) $data, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
 /**
@@ -409,19 +393,28 @@ function timeAgo($datetime) {
 // ================================================================
 
 /**
- * Redirect to URL
- * 
- * @param string $url URL to redirect to
+ * Redirect to a URL
  */
-function redirect($url) {
-    if (!headers_sent()) {
-        header('Location: ' . $url);
-        exit;
-    } else {
-        echo '<script>window.location.href="' . $url . '";</script>';
-        exit;
+function redirect($path) {
+    // Remove leading slash
+    $path = ltrim($path, '/');
+    
+    // If it's a full URL, use as-is
+    if (strpos($path, 'http') === 0) {
+        header("Location: " . $path);
+        exit();
     }
+    
+    // Build full URL with SITE_URL
+    if (defined('SITE_URL')) {
+        header("Location: " . SITE_URL . "/" . $path);
+    } else {
+        // Fallback
+        header("Location: /BLOG_APP/" . $path);
+    }
+    exit();
 }
+
 
 /**
  * Get current page URL

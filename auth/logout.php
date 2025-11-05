@@ -1,18 +1,11 @@
 <?php
 /**
- * ================================================================
  * BLOG HUT - User Logout
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
  * This file handles user logout with:
  * - Session destruction
  * - Cookie removal (remember me)
  * - Redirect to login page
  * - Security confirmation
- * 
- * @package BlogHut
- * @author Your Name
  */
 
 // Start session
@@ -46,5 +39,5 @@ session_start();
 setFlashMessage('You have been logged out successfully. See you soon, ' . $username . '!', 'success');
 
 // Redirect to login page
-redirect('/BLOG_APP/index.php');
+redirect('index.php');
 ?>

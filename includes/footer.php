@@ -1,19 +1,13 @@
 <?php
-/**
- * ================================================================
+/*
  * BLOG HUT - Site Footer
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
+
  * This file contains:
  * - Footer content
  * - Copyright information
  * - Social media links
  * - JavaScript includes
  * - Theme toggle functionality
- * 
- * @package BlogHut
- * @author Your Name
  */
 ?>
 
@@ -123,9 +117,9 @@
                            target="_blank" title="Facebook">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="<?php echo TWITTER_URL; ?>" class="btn btn-outline-light btn-sm me-2 rounded-circle" 
-                           target="_blank" title="Twitter">
-                            <i class="fab fa-twitter"></i>
+                        <a href="<?php echo GITHUB_URL; ?>" class="btn btn-outline-light btn-sm me-2 rounded-circle" 
+                        target="_blank" title="GitHub">
+                            <i class="fab fa-github"></i>
                         </a>
                         <a href="<?php echo INSTAGRAM_URL; ?>" class="btn btn-outline-light btn-sm me-2 rounded-circle" 
                            target="_blank" title="Instagram">

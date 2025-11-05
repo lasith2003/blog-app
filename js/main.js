@@ -1,9 +1,5 @@
 /**
- * ================================================================
  * BLOG HUT - Main JavaScript
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
  * Handles:
  * - Theme toggle (dark/light mode)
  * - Scroll to top button

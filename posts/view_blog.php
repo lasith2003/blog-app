@@ -1,10 +1,6 @@
 <?php
 /**
- * ================================================================
  * BLOG HUT - View Single Blog Post
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
  * This page displays a single blog post with:
  * - Full post content
  * - Author information
@@ -13,9 +9,6 @@
  * - Share buttons
  * - Related posts
  * - Edit/Delete options (for owner)
- * 
- * @package BlogHut
- * @author Your Name
  */
 
 // Start session
@@ -179,31 +172,28 @@ $pageDescription = e(truncate(strip_tags($post['summary'] ?? $post['content']), 
                 <!-- Reactions Section -->
                 <div class="reactions-section mb-4 p-4 bg-light rounded" id="reactionsSection">
                     <h5 class="mb-3">
-                        <i class="fas fa-heart text-danger me-2"></i> React to this post
+                        <i class="fas fa-thumbs-up text-primary me-2"></i> What do you think?
                     </h5>
                     
                     <?php if (isLoggedIn()): ?>
-                    <div class="d-flex gap-2 flex-wrap" id="reactionButtons">
-                        <?php
-                        $reactionIcons = [
-                            'like' => 'fa-thumbs-up',
-                            'love' => 'fa-heart',
-                            'wow' => 'fa-surprise',
-                            'sad' => 'fa-sad-tear',
-                            'angry' => 'fa-angry'
-                        ];
-                        
-                        foreach ($reactionIcons as $type => $icon):
-                            $count = $reactionCounts[$type] ?? 0;
-                            $isActive = $userReaction && $userReaction['type'] === $type;
-                        ?>
-                        <button class="btn btn-outline-primary reaction-btn <?php echo $isActive ? 'active' : ''; ?>" 
-                                data-reaction="<?php echo $type; ?>"
+                    <div class="d-flex gap-3" id="reactionButtons">
+                        <!-- Like Button -->
+                        <button class="btn btn-outline-primary reaction-btn <?php echo ($userReaction && $userReaction['type'] === 'like') ? 'active' : ''; ?>" 
+                                data-reaction="like"
                                 data-post-id="<?php echo $post['id']; ?>">
-                            <i class="fas <?php echo $icon; ?>"></i>
-                            <span class="reaction-count"><?php echo $count; ?></span>
+                            <i class="fas fa-thumbs-up me-1"></i>
+                            Like
+                            <span class="badge bg-primary ms-1 reaction-count"><?php echo $reactionCounts['like'] ?? 0; ?></span>
                         </button>
-                        <?php endforeach; ?>
+                        
+                        <!-- Dislike Button -->
+                        <button class="btn btn-outline-danger reaction-btn <?php echo ($userReaction && $userReaction['type'] === 'dislike') ? 'active' : ''; ?>" 
+                                data-reaction="dislike"
+                                data-post-id="<?php echo $post['id']; ?>">
+                            <i class="fas fa-thumbs-down me-1"></i>
+                            Dislike
+                            <span class="badge bg-danger ms-1 reaction-count"><?php echo $reactionCounts['dislike'] ?? 0; ?></span>
+                        </button>
                     </div>
                     <?php else: ?>
                     <p class="text-muted mb-0">

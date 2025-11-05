@@ -1,15 +1,4 @@
-# ================================================================
 # BLOG HUT - Apache Configuration
-# University of Moratuwa - IN2120 Web Programming Project
-# ================================================================
-# 
-# Features:
-# - Security headers
-# - Protection of sensitive files
-# - Error pages
-# - Clean URLs (optional)
-# - Performance optimization
-# ================================================================
 
 # ================================================================
 # ENABLE REWRITE ENGINE

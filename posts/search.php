@@ -1,10 +1,6 @@
 <?php
 /**
- * ================================================================
  * BLOG HUT - Advanced Search Page
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
  * This page provides advanced search functionality with:
  * - Full-text search across title, content, summary
  * - Category filtering
@@ -13,9 +9,6 @@
  * - Sort options
  * - Search suggestions
  * - Results pagination
- * 
- * @package BlogHut
- * @author Your Name
  */
 
 // Start session

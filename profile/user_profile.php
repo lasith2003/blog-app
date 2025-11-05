@@ -1,19 +1,12 @@
 <?php
 /**
- * ================================================================
  * BLOG HUT - View User Profile (Public)
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
  * This page displays any user's public profile:
  * - Profile information
  * - Statistics
  * - Public badges
  * - Published posts only
  * - Pagination
- * 
- * @package BlogHut
- * @author Your Name
  */
 
 // Start session

@@ -1,10 +1,6 @@
 <?php
 /**
- * ================================================================
  * BLOG HUT - Create New Blog Post
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
  * This page allows users to create new blog posts with:
  * - Rich text editor
  * - Featured image upload
@@ -13,9 +9,6 @@
  * - Draft or publish option
  * - Form validation
  * - Badge assignment (First Post)
- * 
- * @package BlogHut
- * @author Your Name
  */
 
 // Start session
@@ -45,7 +38,7 @@ $status = 'published';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get form data
     $title = cleanInput($_POST['title'] ?? '');
-    $content = $_POST['content'] ?? ''; // Don't clean HTML content
+    $content = $_POST['content'] ?? ''; 
     $summary = cleanInput($_POST['summary'] ?? '');
     $categoryId = isset($_POST['category']) ? intval($_POST['category']) : null;
     $status = isset($_POST['status']) ? cleanInput($_POST['status']) : 'published';
@@ -279,54 +272,85 @@ $pageTitle = 'Create New Post - ' . SITE_NAME;
                             </small>
                         </div>
                         
-                        <!-- Content Editor -->
-                        <div class="mb-4">
-                            <label for="content" class="form-label fw-bold">
-                                <i class="fas fa-file-alt me-1"></i> Content
-                                <span class="text-danger">*</span>
-                            </label>
-                            <textarea class="form-control" 
-                                      id="content" 
-                                      name="content" 
-                                      rows="15"
-                                      required
-                                      placeholder="Write your blog post content here. You can use basic HTML formatting..."><?php echo htmlspecialchars($content); ?></textarea>
-                            <small class="form-text text-muted">
-                                Minimum <?php echo MIN_CONTENT_LENGTH; ?> characters. 
-                                You can use HTML tags for formatting.
-                            </small>
-                            
-                            <!-- Formatting Toolbar -->
-                            <div class="btn-toolbar mt-2" role="toolbar">
-                                <div class="btn-group btn-group-sm me-2" role="group">
-                                    <button type="button" class="btn btn-outline-secondary" onclick="formatText('bold')" title="Bold">
+                    <!-- Content Editor with Visual Formatting -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">
+                            <i class="fas fa-file-alt me-1"></i> Content
+                            <span class="text-danger">*</span>
+                        </label>
+                        
+                        <!-- Editor Toolbar -->
+                        <div class="editor-toolbar p-2 bg-light border rounded-top">
+                            <div class="btn-toolbar" role="toolbar">
+                                <!-- Text Formatting -->
+                                <div class="btn-group btn-group-sm me-2 mb-2" role="group">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="execCmd('bold')" title="Bold (Ctrl+B)">
                                         <i class="fas fa-bold"></i>
                                     </button>
-                                    <button type="button" class="btn btn-outline-secondary" onclick="formatText('italic')" title="Italic">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="execCmd('italic')" title="Italic (Ctrl+I)">
                                         <i class="fas fa-italic"></i>
                                     </button>
-                                    <button type="button" class="btn btn-outline-secondary" onclick="formatText('underline')" title="Underline">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="execCmd('underline')" title="Underline (Ctrl+U)">
                                         <i class="fas fa-underline"></i>
                                     </button>
                                 </div>
-                                <div class="btn-group btn-group-sm me-2" role="group">
-                                    <button type="button" class="btn btn-outline-secondary" onclick="formatText('h2')" title="Heading 2">
-                                        <i class="fas fa-heading"></i> H2
+                                
+                                <!-- Headings -->
+                                <div class="btn-group btn-group-sm me-2 mb-2" role="group">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="execCmd('formatBlock', 'h2')" title="Heading 2">
+                                        H2
                                     </button>
-                                    <button type="button" class="btn btn-outline-secondary" onclick="formatText('h3')" title="Heading 3">
-                                        <i class="fas fa-heading"></i> H3
+                                    <button type="button" class="btn btn-outline-secondary" onclick="execCmd('formatBlock', 'h3')" title="Heading 3">
+                                        H3
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary" onclick="execCmd('formatBlock', 'p')" title="Paragraph">
+                                        P
                                     </button>
                                 </div>
-                                <div class="btn-group btn-group-sm" role="group">
-                                    <button type="button" class="btn btn-outline-secondary" onclick="formatText('link')" title="Insert Link">
+                                
+                                <!-- Lists -->
+                                <div class="btn-group btn-group-sm me-2 mb-2" role="group">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="execCmd('insertUnorderedList')" title="Bullet List">
+                                        <i class="fas fa-list-ul"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary" onclick="execCmd('insertOrderedList')" title="Numbered List">
+                                        <i class="fas fa-list-ol"></i>
+                                    </button>
+                                </div>
+                                
+                                <!-- Other -->
+                                <div class="btn-group btn-group-sm me-2 mb-2" role="group">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="insertLink()" title="Insert Link">
                                         <i class="fas fa-link"></i>
                                     </button>
-                                    <button type="button" class="btn btn-outline-secondary" onclick="formatText('quote')" title="Blockquote">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="execCmd('formatBlock', 'blockquote')" title="Blockquote">
                                         <i class="fas fa-quote-right"></i>
+                                    </button>
+                                </div>
+                                
+                                <!-- Clear -->
+                                <div class="btn-group btn-group-sm mb-2" role="group">
+                                    <button type="button" class="btn btn-outline-danger" onclick="execCmd('removeFormat')" title="Clear Formatting">
+                                        <i class="fas fa-eraser"></i>
                                     </button>
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- Visual Editor (ContentEditable Div) -->
+                        <div id="editor" 
+                            contenteditable="true" 
+                            class="form-control visual-editor border-top-0 rounded-bottom" 
+                            style="min-height: 400px; max-height: 600px; overflow-y: auto; padding: 20px; font-size: 1.1rem; line-height: 1.8;"
+                            placeholder="Start writing your blog post here... Press Enter for new paragraph."><?php echo $content; ?></div>
+                        
+                        <!-- Hidden textarea for form submission -->
+                        <textarea id="content" name="content" style="display: none;" required></textarea>
+                        
+                        <small class="form-text text-muted d-block mt-2">
+                            Minimum <?php echo MIN_CONTENT_LENGTH; ?> characters. Use the toolbar above for formatting. Press <kbd>Enter</kbd> for new paragraph.
+                        </small>
+                    </div>
                         
                         <!-- Status Selection -->
                         <div class="mb-4">
@@ -375,7 +399,84 @@ $pageTitle = 'Create New Post - ' . SITE_NAME;
 
 <!-- Image Preview Script -->
 <script>
-// Image preview
+// ============================================
+// VISUAL EDITOR SETUP
+// ============================================
+const editor = document.getElementById('editor');
+const hiddenContent = document.getElementById('content');
+
+// Load initial content
+if (hiddenContent.value) {
+    editor.innerHTML = hiddenContent.value;
+}
+
+// Sync editor content to hidden textarea
+function syncContent() {
+    hiddenContent.value = editor.innerHTML;
+}
+
+// Sync on input and blur
+editor.addEventListener('input', syncContent);
+editor.addEventListener('blur', syncContent);
+
+// Execute formatting command
+function execCmd(command, value = null) {
+    editor.focus();
+    document.execCommand(command, false, value);
+    syncContent();
+}
+
+// Insert link
+function insertLink() {
+    const url = prompt('Enter URL:', 'https://');
+    if (url && url !== 'https://') {
+        execCmd('createLink', url);
+    }
+}
+
+// Keyboard shortcuts
+editor.addEventListener('keydown', function(e) {
+    if (e.ctrlKey || e.metaKey) {
+        switch(e.key.toLowerCase()) {
+            case 'b':
+                e.preventDefault();
+                execCmd('bold');
+                break;
+            case 'i':
+                e.preventDefault();
+                execCmd('italic');
+                break;
+            case 'u':
+                e.preventDefault();
+                execCmd('underline');
+                break;
+        }
+    }
+    
+    // Automatically create new paragraph on Enter
+    if (e.key === 'Enter' && !e.shiftKey) {
+        // Let default behavior handle it, but ensure we sync
+        setTimeout(syncContent, 10);
+    }
+});
+
+// Placeholder functionality
+editor.addEventListener('focus', function() {
+    if (this.innerHTML === '' || this.innerHTML === '<br>') {
+        this.innerHTML = '<p><br></p>';
+        // Place cursor at start
+        const range = document.createRange();
+        const sel = window.getSelection();
+        range.setStart(this.firstChild, 0);
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
+    }
+});
+
+// ============================================
+// IMAGE PREVIEW
+// ============================================
 document.getElementById('featured_image').addEventListener('change', function(e) {
     const file = e.target.files[0];
     const preview = document.getElementById('imagePreview');
@@ -391,51 +492,16 @@ document.getElementById('featured_image').addEventListener('change', function(e)
     }
 });
 
-// Simple text formatting
-function formatText(format) {
-    const textarea = document.getElementById('content');
-    const start = textarea.selectionStart;
-    const end = textarea.selectionEnd;
-    const selectedText = textarea.value.substring(start, end);
-    let replacement = '';
-    
-    switch(format) {
-        case 'bold':
-            replacement = '<strong>' + selectedText + '</strong>';
-            break;
-        case 'italic':
-            replacement = '<em>' + selectedText + '</em>';
-            break;
-        case 'underline':
-            replacement = '<u>' + selectedText + '</u>';
-            break;
-        case 'h2':
-            replacement = '<h2>' + selectedText + '</h2>';
-            break;
-        case 'h3':
-            replacement = '<h3>' + selectedText + '</h3>';
-            break;
-        case 'link':
-            const url = prompt('Enter URL:');
-            if (url) {
-                replacement = '<a href="' + url + '">' + selectedText + '</a>';
-            }
-            break;
-        case 'quote':
-            replacement = '<blockquote>' + selectedText + '</blockquote>';
-            break;
-    }
-    
-    if (replacement) {
-        textarea.value = textarea.value.substring(0, start) + replacement + textarea.value.substring(end);
-        textarea.focus();
-    }
-}
-
-// Form validation
+// ============================================
+// FORM VALIDATION
+// ============================================
 document.getElementById('createPostForm').addEventListener('submit', function(e) {
+    // Sync content before validation
+    syncContent();
+    
     const title = document.getElementById('title').value.trim();
-    const content = document.getElementById('content').value.trim();
+    const editorText = editor.innerText || editor.textContent;
+    const contentText = editorText.trim();
     
     if (!title || title.length < <?php echo MIN_TITLE_LENGTH; ?>) {
         e.preventDefault();
@@ -448,7 +514,7 @@ document.getElementById('createPostForm').addEventListener('submit', function(e)
         return false;
     }
     
-    if (!content || content.length < <?php echo MIN_CONTENT_LENGTH; ?>) {
+    if (!contentText || contentText.length < <?php echo MIN_CONTENT_LENGTH; ?>) {
         e.preventDefault();
         Swal.fire({
             icon: 'error',
@@ -458,6 +524,9 @@ document.getElementById('createPostForm').addEventListener('submit', function(e)
         });
         return false;
     }
+    
+    // Final sync before submit
+    syncContent();
 });
 </script>
 

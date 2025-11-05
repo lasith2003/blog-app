@@ -1,10 +1,6 @@
 <?php
 /**
- * ================================================================
  * BLOG HUT - Post Functions
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
  * This file contains all blog post related functions:
  * - Fetch posts with filters
  * - Get post details
@@ -12,9 +8,6 @@
  * - Get post statistics
  * - Handle reactions and comments count
  * - Category management
- * 
- * @package BlogHut
- * @author Your Name
  */
 
 // Include required files
@@ -419,6 +412,17 @@ function getReactionCounts($postId) {
     }
     
     return $counts;
+}
+
+/**
+ * Validate reaction type
+ * 
+ * @param string $type Reaction type
+ * @return bool
+ */
+function isValidReaction($type) {
+    $allowedTypes = ['like', 'dislike'];
+    return in_array($type, $allowedTypes);
 }
 
 // ================================================================

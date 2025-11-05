@@ -1,10 +1,6 @@
 <?php
 /**
- * ================================================================
  * BLOG HUT - Admin User Management
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
  * Manage all users:
  * - View all users
  * - Search users
@@ -12,9 +8,6 @@
  * - Change user role
  * - Delete users
  * - Pagination
- * 
- * @package BlogHut
- * @author Your Name
  */
 
 // Start session

@@ -1,9 +1,5 @@
 /**
- * ================================================================
  * BLOG HUT - Login/Auth Pages JavaScript
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
  * Handles:
  * - Password visibility toggle
  * - Form validation

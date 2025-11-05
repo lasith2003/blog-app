@@ -1,10 +1,6 @@
 <?php
 /**
- * ================================================================
  * BLOG HUT - Blog Listing Page
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
  * This page displays all published blog posts with:
  * - Pagination
  * - Category filtering
@@ -12,9 +8,6 @@
  * - Sorting options
  * - Post cards with metadata
  * - Responsive grid layout
- * 
- * @package BlogHut
- * @author Lasith
  */
 
 // Start session

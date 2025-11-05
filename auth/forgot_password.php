@@ -1,20 +1,10 @@
 <?php
 /**
- * ================================================================
  * BLOG HUT - Forgot Password
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
  * This file handles password recovery with:
  * - Email validation
  * - Password reset (simplified version)
  * - Security questions (optional)
- * 
- * Note: This is a simplified implementation for academic purposes.
- * In production, you should implement email-based token reset.
- * 
- * @package BlogHut
- * @author Your Name
  */
 
 // Start session

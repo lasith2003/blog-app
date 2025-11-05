@@ -1,10 +1,6 @@
 <?php
 /**
- * ================================================================
  * BLOG HUT - Edit Profile Page
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
  * This page allows users to edit their profile:
  * - Update username
  * - Update email
@@ -12,9 +8,6 @@
  * - Change profile picture
  * - Change password
  * - Form validation
- * 
- * @package BlogHut
- * @author Your Name
  */
 
 // Start session
@@ -168,7 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 commit();
                 setFlashMessage('Profile updated successfully!', 'success');
-                redirect('/profile/my_profile.php');
+                redirect('profile/my_profile.php');
             } else {
                 rollback();
                 $errors[] = 'Failed to update profile.';

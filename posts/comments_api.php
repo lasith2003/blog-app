@@ -1,19 +1,13 @@
 <?php
 /**
- * ================================================================
  * BLOG HUT - Comments API (AJAX)
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
+
  * This API handles comment operations via AJAX:
  * - Add new comment
  * - Get comments for a post
  * - Delete comment (owner/admin only)
  * - JSON response format
  * - Reply support (nested comments)
- * 
- * @package BlogHut
- * @author Your Name
  */
 
 // Start session

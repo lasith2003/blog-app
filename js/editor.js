@@ -1,15 +1,5 @@
 /**
- * ================================================================
  * BLOG HUT - Editor JavaScript
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
- * Handles:
- * - Text formatting buttons
- * - Auto-save drafts
- * - Word count
- * - Preview mode
- * - Image upload preview
  */
 
 (function() {

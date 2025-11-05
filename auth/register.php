@@ -1,19 +1,12 @@
 <?php
 /**
- * ================================================================
  * BLOG HUT - User Registration
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
  * This file handles user registration with:
  * - Form validation
  * - Password hashing
  * - Username/email uniqueness check
  * - Automatic login after registration
  * - Badge assignment (Newcomer)
- * 
- * @package BlogHut
- * @author Your Name
  */
 
 // Start session
@@ -101,30 +94,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userId = insertRecord($sql, [$username, $email, $hashedPassword]);
             
             if ($userId) {
-                // Assign "Newcomer" badge (badge ID 1)
-                $badgeSql = "INSERT INTO user_badges (user_id, badge_id, earned_at) 
-                             VALUES (?, 1, NOW())";
-                executeQuery($badgeSql, [$userId]);
-                
-                // Commit transaction
-                commit();
-                
-                // Auto login after registration
-                setSession('user_id', $userId);
-                setSession('username', $username);
-                setSession('email', $email);
-                setSession('role', 'user');
-                setSession('profile_image', DEFAULT_AVATAR);
-                
-                // Set success message
-                setFlashMessage('Welcome to ' . SITE_NAME . '! Your account has been created successfully.', 'success');
-                
-                // Redirect to home
-                redirect(SITE_URL . '/posts/home.php');
-            } else {
-                rollback();
-                $errors[] = 'Registration failed. Please try again.';
-            }
+            // Assign "Newcomer" badge (badge ID 1)
+            $badgeSql = "INSERT INTO user_badges (user_id, badge_id, earned_at) 
+                        VALUES (?, 1, NOW())";
+            executeQuery($badgeSql, [$userId]);
+            
+            // Commit transaction
+            commit();
+            
+            // Set success message for login page
+            setFlashMessage('Registration successful! Please login with your credentials.', 'success');
+            
+            // Redirect to login page (NOT auto-login)
+            redirect('auth/login.php');
+            
+        } else {
+            rollback();
+            $errors[] = 'Registration failed. Please try again.';
+        }
             
         } catch (Exception $e) {
             rollback();

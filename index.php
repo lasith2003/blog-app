@@ -1,10 +1,6 @@
 <?php
 /**
- * ================================================================
  * BLOG HUT - Landing Page
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
  * This is the main landing page featuring:
  * - Hero section with call-to-action
  * - Featured/trending posts
@@ -13,9 +9,6 @@
  * - Site statistics
  * - About section
  * - Modern, responsive design
- * 
- * @package BlogHut
- * @author Your Name
  */
 
 // Start session

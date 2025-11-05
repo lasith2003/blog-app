@@ -1,19 +1,12 @@
 <?php
 /**
- * ================================================================
  * BLOG HUT - My Profile Page
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
  * This page displays the logged-in user's profile with:
  * - Profile information
  * - Statistics (posts, views, reactions, comments)
  * - Earned badges
  * - Recent posts
  * - Edit profile button
- * 
- * @package BlogHut
- * @author Your Name
  */
 
 // Start session

@@ -1,10 +1,6 @@
 <?php
 /**
- * ================================================================
  * BLOG HUT - Admin Post Management
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
  * Manage all blog posts:
  * - View all posts
  * - Filter by status/category
@@ -13,9 +9,6 @@
  * - View/Edit any post
  * - Change post status
  * - Pagination
- * 
- * @package BlogHut
- * @author Your Name
  */
 
 // Start session

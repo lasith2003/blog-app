@@ -1,206 +1,136 @@
+
 <?php
-/**
- * ================================================================
- * BLOG HUT - Admin Category Management
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
- * Manage blog categories:
- * - View all categories
- * - Add new category
- * - Edit category
- * - Delete category
- * - View post counts
- * 
- * @package BlogHut
- * @author Your Name
- */
-
-// Start session
 session_start();
-
-// Include required files
 require_once '../config/database.php';
 require_once '../config/constants.php';
 require_once '../includes/helper.php';
 
-// Require admin access
 requireAdmin();
 
-// Handle category actions
+// Handle actions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
-    $csrfToken = $_POST['csrf_token'] ?? '';
+    $token = $_POST['csrf_token'] ?? '';
     
-    if (!verifyCSRFToken($csrfToken)) {
-        setFlashMessage('Invalid security token.', 'error');
-    } else {
+    if (!verifyCSRFToken($token)) {
+        setFlashMessage('Invalid security token', 'error');
+        redirect('admin/categories.php');
+    }
+    
+    if ($action === 'add') {
+        $name = cleanInput($_POST['name']);
+        $slug = slugify($name);
+        $description = cleanInput($_POST['description'] ?? '');
+        
         try {
-            if ($action === 'add') {
-                $name = cleanInput($_POST['name'] ?? '');
-                $slug = slugify($name);
-                $description = cleanInput($_POST['description'] ?? '');
-                
-                if (isEmpty($name)) {
-                    setFlashMessage('Category name is required.', 'error');
-                } else {
-                    // Check if slug exists
-                    $exists = fetchOne("SELECT id FROM categories WHERE slug = ?", [$slug]);
-                    if ($exists) {
-                        setFlashMessage('A category with this name already exists.', 'error');
-                    } else {
-                        insertRecord(
-                            "INSERT INTO categories (name, slug, description) VALUES (?, ?, ?)",
-                            [$name, $slug, $description]
-                        );
-                        setFlashMessage('Category added successfully!', 'success');
-                    }
-                }
-            } elseif ($action === 'edit') {
-                $id = intval($_POST['category_id']);
-                $name = cleanInput($_POST['name'] ?? '');
-                $slug = slugify($name);
-                $description = cleanInput($_POST['description'] ?? '');
-                
-                if (isEmpty($name)) {
-                    setFlashMessage('Category name is required.', 'error');
-                } else {
-                    // Check if slug exists (excluding current category)
-                    $exists = fetchOne("SELECT id FROM categories WHERE slug = ? AND id != ?", [$slug, $id]);
-                    if ($exists) {
-                        setFlashMessage('A category with this name already exists.', 'error');
-                    } else {
-                        updateRecord(
-                            "UPDATE categories SET name = ?, slug = ?, description = ? WHERE id = ?",
-                            [$name, $slug, $description, $id]
-                        );
-                        setFlashMessage('Category updated successfully!', 'success');
-                    }
-                }
-            } elseif ($action === 'delete') {
-                $id = intval($_POST['category_id']);
-                
-                // Check if category has posts
-                $postCount = fetchOne(
-                    "SELECT COUNT(*) as count FROM blogPost WHERE category = ?",
-                    [$id]
-                )['count'];
-                
-                if ($postCount > 0) {
-                    setFlashMessage("Cannot delete category with $postCount posts. Reassign posts first.", 'error');
-                } else {
-                    updateRecord("DELETE FROM categories WHERE id = ?", [$id]);
-                    setFlashMessage('Category deleted successfully!', 'success');
-                }
-            }
+            executeQuery("INSERT INTO categories (name, slug, description) VALUES (?, ?, ?)", 
+                        [$name, $slug, $description]);
+            setFlashMessage('Category added successfully!', 'success');
         } catch (Exception $e) {
-            error_log("Category Action Error: " . $e->getMessage());
-            setFlashMessage('An error occurred.', 'error');
+            setFlashMessage('Category name or slug already exists.', 'error');
         }
     }
-    redirect('/admin/categories.php');
+    
+    if ($action === 'edit') {
+        $id = intval($_POST['id']);
+        $name = cleanInput($_POST['name']);
+        $slug = slugify($name);
+        $description = cleanInput($_POST['description'] ?? '');
+        
+        try {
+            executeQuery("UPDATE categories SET name = ?, slug = ?, description = ? WHERE id = ?", 
+                        [$name, $slug, $description, $id]);
+            setFlashMessage('Category updated successfully!', 'success');
+        } catch (Exception $e) {
+            setFlashMessage('Category name or slug already exists.', 'error');
+        }
+    }
+    
+    redirect('admin/categories.php');
 }
 
-try {
-    // Get all categories with post counts
-    $categories = fetchAll("
-        SELECT c.*, COUNT(bp.id) as post_count
-        FROM categories c
-        LEFT JOIN blogPost bp ON c.id = bp.category
-        GROUP BY c.id
-        ORDER BY c.name ASC
-    ");
+// Handle delete
+if (isset($_GET['action']) && $_GET['action'] === 'delete') {
+    $id = intval($_GET['id']);
+    $token = $_GET['token'] ?? '';
     
-} catch (Exception $e) {
-    error_log("Admin Categories Error: " . $e->getMessage());
-    $categories = [];
+    if (verifyCSRFToken($token)) {
+        executeQuery("DELETE FROM categories WHERE id = ?", [$id]);
+        setFlashMessage('Category deleted successfully!', 'success');
+    }
+    redirect('admin/categories.php');
 }
+
+// Get categories
+$categories = fetchAll("
+    SELECT c.*, 
+    (SELECT COUNT(*) FROM blogPost WHERE category = c.id) as post_count
+    FROM categories c
+    ORDER BY c.name ASC
+");
 
 $pageTitle = 'Manage Categories - Admin - ' . SITE_NAME;
-$customCSS = '<link rel="stylesheet" href="' . CSS_URL . '/admin.css">';
 ?>
 <?php include '../includes/header.php'; ?>
 
-<div class="container-fluid my-4">
-    <!-- Header -->
-    <div class="row mb-4">
-        <div class="col-md-6">
-            <h1 class="fw-bold mb-2">
-                <i class="fas fa-tags text-primary me-2"></i>
-                Manage Categories
-            </h1>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="<?php echo SITE_URL; ?>/admin/dashboard.php">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Categories</li>
-                </ol>
-            </nav>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+            <?php require_once __DIR__ . '/includes/sidebar.php'; ?>
         </div>
-        <div class="col-md-6 text-md-end">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
-                <i class="fas fa-plus me-2"></i> Add New Category
-            </button>
-            <a href="<?php echo SITE_URL; ?>/admin/dashboard.php" class="btn btn-outline-secondary">
-                <i class="fas fa-arrow-left me-2"></i> Back
-            </a>
-        </div>
-    </div>
-    
-    <!-- Categories Grid -->
-    <div class="row g-4">
-        <?php if (!empty($categories)): ?>
-            <?php foreach ($categories as $category): ?>
-            <div class="col-md-6 col-lg-4">
-                <div class="card shadow-sm h-100">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-start mb-3">
-                            <div>
-                                <h5 class="mb-1">
-                                    <i class="fas fa-tag text-primary me-2"></i>
-                                    <?php echo e($category['name']); ?>
-                                </h5>
-                                <small class="text-muted">Slug: <?php echo e($category['slug']); ?></small>
-                            </div>
-                            <span class="badge bg-primary fs-6">
-                                <?php echo $category['post_count']; ?> posts
-                            </span>
-                        </div>
-                        
-                        <?php if ($category['description']): ?>
-                        <p class="text-muted small mb-3">
-                            <?php echo e($category['description']); ?>
-                        </p>
-                        <?php else: ?>
-                        <p class="text-muted small fst-italic mb-3">No description</p>
-                        <?php endif; ?>
-                        
-                        <div class="d-flex gap-2">
-                            <button type="button" class="btn btn-sm btn-outline-primary flex-fill" 
-                                    onclick='editCategory(<?php echo json_encode($category); ?>)'>
-                                <i class="fas fa-edit me-1"></i> Edit
-                            </button>
-                            <button type="button" class="btn btn-sm btn-outline-danger" 
-                                    onclick="deleteCategory(<?php echo $category['id']; ?>, '<?php echo e($category['name']); ?>', <?php echo $category['post_count']; ?>)">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-footer bg-light small text-muted">
-                        <i class="fas fa-calendar me-1"></i>
-                        Created <?php echo formatDate($category['created_at'], SHORT_DATE_FORMAT); ?>
+
+        <div class="col-md-9 col-lg-10">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-tags me-2"></i>Manage Categories</h2>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+                    <i class="fas fa-plus me-2"></i> Add Category
+                </button>
+            </div>
+
+            <?php echo displayFlashMessage(); ?>
+
+            <!-- Categories Table -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th style="width: 5%">ID</th>
+                                    <th style="width: 20%">Name</th>
+                                    <th style="width: 20%">Slug</th>
+                                    <th style="width: 40%">Description</th>
+                                    <th style="width: 10%">Posts</th>
+                                    <th style="width: 15%">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($categories as $cat): ?>
+                                <tr>
+                                    <td><?php echo $cat['id']; ?></td>
+                                    <td><strong><?php echo e($cat['name']); ?></strong></td>
+                                    <td><code><?php echo e($cat['slug']); ?></code></td>
+                                    <td><?php echo e(truncate($cat['description'] ?? '', 80)); ?></td>
+                                    <td><span class="badge bg-primary"><?php echo $cat['post_count']; ?></span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary" 
+                                                onclick="editCategory(<?php echo htmlspecialchars(json_encode($cat)); ?>)">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger" 
+                                                onclick="deleteCategory(<?php echo $cat['id']; ?>, <?php echo $cat['post_count']; ?>)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <div class="col-12">
-                <div class="text-center py-5">
-                    <i class="fas fa-tags fa-4x text-muted mb-3"></i>
-                    <h4 class="text-muted">No categories yet</h4>
-                    <p class="text-muted">Click "Add New Category" to create your first category</p>
-                </div>
-            </div>
-        <?php endif; ?>
+        </div>
     </div>
 </div>
 
@@ -211,39 +141,23 @@ $customCSS = '<link rel="stylesheet" href="' . CSS_URL . '/admin.css">';
             <form method="POST">
                 <?php echo csrfField(); ?>
                 <input type="hidden" name="action" value="add">
-                
                 <div class="modal-header">
-                    <h5 class="modal-title">
-                        <i class="fas fa-plus-circle me-2"></i>
-                        Add New Category
-                    </h5>
+                    <h5 class="modal-title">Add New Category</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="addName" class="form-label">
-                            Category Name <span class="text-danger">*</span>
-                        </label>
-                        <input type="text" class="form-control" id="addName" name="name" 
-                               required maxlength="50" placeholder="e.g., Technology">
-                        <small class="form-text text-muted">
-                            The slug will be generated automatically
-                        </small>
+                        <label class="form-label">Category Name *</label>
+                        <input type="text" class="form-control" name="name" required>
                     </div>
-                    
                     <div class="mb-3">
-                        <label for="addDescription" class="form-label">Description</label>
-                        <textarea class="form-control" id="addDescription" name="description" 
-                                  rows="3" placeholder="Brief description of this category (optional)"></textarea>
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" name="description" rows="3"></textarea>
                     </div>
                 </div>
-                
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save me-2"></i> Add Category
-                    </button>
+                    <button type="submit" class="btn btn-primary">Add Category</button>
                 </div>
             </form>
         </div>
@@ -257,81 +171,58 @@ $customCSS = '<link rel="stylesheet" href="' . CSS_URL . '/admin.css">';
             <form method="POST">
                 <?php echo csrfField(); ?>
                 <input type="hidden" name="action" value="edit">
-                <input type="hidden" name="category_id" id="editId">
-                
+                <input type="hidden" name="id" id="edit_id">
                 <div class="modal-header">
-                    <h5 class="modal-title">
-                        <i class="fas fa-edit me-2"></i>
-                        Edit Category
-                    </h5>
+                    <h5 class="modal-title">Edit Category</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="editName" class="form-label">
-                            Category Name <span class="text-danger">*</span>
-                        </label>
-                        <input type="text" class="form-control" id="editName" name="name" 
-                               required maxlength="50">
+                        <label class="form-label">Category Name *</label>
+                        <input type="text" class="form-control" name="name" id="edit_name" required>
                     </div>
-                    
                     <div class="mb-3">
-                        <label for="editDescription" class="form-label">Description</label>
-                        <textarea class="form-control" id="editDescription" name="description" rows="3"></textarea>
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" name="description" id="edit_description" rows="3"></textarea>
                     </div>
                 </div>
-                
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save me-2"></i> Update Category
-                    </button>
+                    <button type="submit" class="btn btn-primary">Update Category</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
-<!-- Delete Form -->
-<form id="deleteCategoryForm" method="POST" style="display: none;">
-    <?php echo csrfField(); ?>
-    <input type="hidden" name="action" value="delete">
-    <input type="hidden" name="category_id" id="deleteCategoryId">
-</form>
-
 <script>
-function editCategory(category) {
-    document.getElementById('editId').value = category.id;
-    document.getElementById('editName').value = category.name;
-    document.getElementById('editDescription').value = category.description || '';
-    
-    const modal = new bootstrap.Modal(document.getElementById('editCategoryModal'));
-    modal.show();
+function editCategory(cat) {
+    document.getElementById('edit_id').value = cat.id;
+    document.getElementById('edit_name').value = cat.name;
+    document.getElementById('edit_description').value = cat.description || '';
+    new bootstrap.Modal(document.getElementById('editCategoryModal')).show();
 }
 
-function deleteCategory(id, name, postCount) {
+function deleteCategory(id, postCount) {
     if (postCount > 0) {
         Swal.fire({
-            icon: 'error',
             title: 'Cannot Delete',
             text: `This category has ${postCount} post(s). Please reassign or delete those posts first.`,
-            confirmButtonColor: '#FFB100'
+            icon: 'warning'
         });
         return;
     }
     
     Swal.fire({
         title: 'Delete Category?',
-        html: `Are you sure you want to delete <strong>${name}</strong>?`,
+        text: 'This action cannot be undone!',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#dc3545',
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
-            document.getElementById('deleteCategoryId').value = id;
-            document.getElementById('deleteCategoryForm').submit();
+            window.location.href = '?action=delete&id=' + id + '&token=<?php echo generateCSRFToken(); ?>';
         }
     });
 }

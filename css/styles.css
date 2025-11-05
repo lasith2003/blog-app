@@ -1,11 +1,5 @@
 /**
- * ================================================================
  * BLOG HUT - Main Stylesheet
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
- * Modern, clean design inspired by Medium.com
- * Features: Dark mode support, smooth animations, responsive design
  */
 
 /* ================================================================
@@ -307,23 +301,61 @@ h1, h2, h3, h4, h5, h6 {
 /* ================================================================
    REACTIONS
    ================================================================ */
+/* ================================================================
+   REACTION BUTTONS
+   ================================================================ */
 .reaction-btn {
-    transition: var(--transition);
+    transition: all 0.3s ease;
+    font-weight: 500;
+    min-width: 100px;
 }
 
 .reaction-btn:hover {
-    transform: scale(1.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .reaction-btn.active {
-    background-color: var(--primary-color) !important;
-    border-color: var(--primary-color) !important;
-    color: #000 !important;
+    transform: scale(1.05);
+}
+
+.reaction-btn.active.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #000;
+}
+
+.reaction-btn.active.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #fff;
+}
+
+.reaction-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .reaction-count {
-    margin-left: 0.5rem;
-    font-weight: 600;
+    display: inline-block;
+    min-width: 25px;
+    text-align: center;
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .reaction-btn.btn-outline-primary {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .reaction-btn.btn-outline-danger {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+[data-theme="dark"] .reaction-count.badge {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: var(--text-color) !important;
 }
 
 /* ================================================================
@@ -595,4 +627,243 @@ textarea.form-control {
         width: 45px;
         height: 45px;
     }
+}
+
+/* ================================================================
+   VISUAL RICH TEXT EDITOR
+   ================================================================ */
+.visual-editor {
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+
+.visual-editor:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(255, 177, 0, 0.25);
+}
+
+.visual-editor:empty:before {
+    content: attr(placeholder);
+    color: #999;
+    font-style: italic;
+    pointer-events: none;
+}
+
+/* Formatting inside editor */
+.visual-editor h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.visual-editor h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+
+.visual-editor p {
+    margin-bottom: 1rem;
+}
+
+.visual-editor strong,
+.visual-editor b {
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.visual-editor em,
+.visual-editor i {
+    font-style: italic;
+}
+
+.visual-editor u {
+    text-decoration: underline;
+}
+
+.visual-editor blockquote {
+    border-left: 4px solid var(--primary-color);
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--text-muted);
+    background-color: rgba(255, 177, 0, 0.05);
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+}
+
+.visual-editor ul,
+.visual-editor ol {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.visual-editor li {
+    margin-bottom: 0.5rem;
+}
+
+.visual-editor a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.visual-editor a:hover {
+    color: #e09f00;
+}
+
+/* Editor Toolbar */
+.editor-toolbar {
+    background-color: var(--background-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+.editor-toolbar .btn {
+    border-color: var(--border-color);
+}
+
+.editor-toolbar .btn:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #000;
+}
+
+.editor-toolbar .btn:active,
+.editor-toolbar .btn.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #000;
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .visual-editor {
+    background-color: #2a2a2a;
+}
+
+[data-theme="dark"] .editor-toolbar {
+    background-color: #1f1f1f !important;
+}
+
+/* ================================================================
+   VISUAL EDITOR
+   ================================================================ */
+.visual-editor {
+    font-family: Georgia, serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: border-color 0.3s ease;
+}
+
+.visual-editor:focus {
+    outline: none;
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 0.2rem rgba(255, 177, 0, 0.25);
+}
+
+.visual-editor:empty:before {
+    content: attr(placeholder);
+    color: #999;
+    font-style: italic;
+}
+
+/* Content formatting inside editor */
+.visual-editor h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 1.5rem 0 1rem;
+}
+
+.visual-editor h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 1.25rem 0 0.75rem;
+}
+
+.visual-editor p {
+    margin-bottom: 1rem;
+}
+
+.visual-editor strong,
+.visual-editor b {
+    font-weight: 700;
+}
+
+.visual-editor em,
+.visual-editor i {
+    font-style: italic;
+}
+
+.visual-editor u {
+    text-decoration: underline;
+}
+
+.visual-editor blockquote {
+    border-left: 4px solid var(--primary-color);
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--text-muted);
+    background-color: rgba(255, 177, 0, 0.05);
+    border-radius: 4px;
+}
+
+.visual-editor ul,
+.visual-editor ol {
+    margin: 1rem 0 1rem 2rem;
+}
+
+.visual-editor li {
+    margin-bottom: 0.5rem;
+}
+
+.visual-editor a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* Editor toolbar */
+.editor-toolbar {
+    background-color: #f8f9fa !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .editor-toolbar {
+    background-color: #2a2a2a !important;
+}
+
+.editor-toolbar .btn:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #000;
+}
+
+/* Dark mode */
+[data-theme="dark"] .visual-editor {
+    background-color: #2a2a2a;
+}
+
+/* Keyboard hint */
+kbd {
+    background-color: #e9ecef;
+    border: 1px solid #adb5bd;
+    border-radius: 3px;
+    padding: 2px 6px;
+    font-size: 0.85em;
+}
+
+[data-theme="dark"] kbd {
+    background-color: #3a3a3a;
+    border-color: #666;
+    color: #fff;
 }

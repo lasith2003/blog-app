@@ -1,18 +1,11 @@
 <?php
 /**
- * ================================================================
  * BLOG HUT - Site Header
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
  * This file contains the site header with:
  * - HTML head section
  * - Navigation bar
  * - User menu
  * - Theme toggle
- * 
- * @package BlogHut
- * @author Your Name
  */
 
 // Start session if not already started

@@ -1,10 +1,6 @@
 <?php
 /**
- * ================================================================
  * BLOG HUT - User Login
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
  * This file handles user authentication with:
  * - Email/username login support
  * - Password verification
@@ -12,9 +8,6 @@
  * - Session management
  * - Failed login attempt tracking
  * - Redirect to intended page after login
- * 
- * @package BlogHut
- * @author Your Name
  */
 
 // Start session
@@ -112,6 +105,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+
+
 // Set page title
 $pageTitle = 'Login - ' . SITE_NAME;
 $customCSS = '<link rel="stylesheet" href="' . CSS_URL . '/login.css">';
@@ -129,6 +124,7 @@ $customCSS = '<link rel="stylesheet" href="' . CSS_URL . '/login.css">';
                         <h2 class="mt-3 mb-2">Welcome Back</h2>
                         <p class="text-muted">Login to continue to <?php echo SITE_NAME; ?></p>
                     </div>
+                
                     
                     <!-- Display Errors -->
                     <?php if (!empty($errors)): ?>

@@ -1,14 +1,6 @@
 /**
- * ================================================================
  * BLOG HUT - Comments JavaScript (AJAX)
  * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
- * Handles:
- * - Submit comments via AJAX
- * - Real-time comment updates
- * - Comment count updates
- * - Error handling
  */
 
 (function() {

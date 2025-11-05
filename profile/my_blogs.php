@@ -1,19 +1,12 @@
 <?php
 /**
- * ================================================================
  * BLOG HUT - My Blog Posts
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
  * This page displays all blog posts by the logged-in user:
  * - Published and draft posts
  * - Post statistics
  * - Edit/Delete actions
  * - Pagination
  * - Filter by status
- * 
- * @package BlogHut
- * @author Your Name
  */
 
 // Start session

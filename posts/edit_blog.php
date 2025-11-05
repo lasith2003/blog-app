@@ -1,19 +1,12 @@
 <?php
 /**
- * ================================================================
  * BLOG HUT - Edit Blog Post
- * University of Moratuwa - IN2120 Web Programming Project
- * ================================================================
- * 
  * This page allows users to edit their existing blog posts with:
  * - Pre-filled form with existing data
  * - Change title, content, category, image
  * - Update summary and status
  * - Permission check (owner or admin only)
  * - Image replacement option
- * 
- * @package BlogHut
- * @author Your Name
  */
 
 // Start session
