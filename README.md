@@ -54,17 +54,6 @@ Blog Hut is a full-featured blogging application with user authentication, CRUD 
 ## Configuration
 Create a local environment file (.env) or update `config/database.php` with your database credentials. Example `.env`:
 
-```env
-DB_HOST=localhost
-DB_NAME=blog_hut
-DB_USER=root
-DB_PASS=
-SITE_URL=http://localhost/BLOG_APP
-DEBUG_MODE=true
-```
-
-For security, never commit `.env` or `config/database.php` with real credentials. Add them to `.gitignore`.
-
 ## Database
 - Schema and sample data are provided in `database.sql`.
 - Main tables: `users`, `blogPost`, `comments`, `reactions`, `categories`, `badges`, `user_badges`.
@@ -72,10 +61,6 @@ For security, never commit `.env` or `config/database.php` with real credentials
 ## Running the app
 Open your browser and navigate to:
 http://localhost/BLOG_APP
-
-Default demo credentials (for development only):
-- Admin: `admin2` / `admin123`
-- User: `john_doe` / `password123`
 
 ## Project structure (high level)
 - admin/ — Admin pages
