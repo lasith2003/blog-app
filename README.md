@@ -74,7 +74,7 @@ Open your browser and navigate to:
 http://localhost/BLOG_APP
 
 Default demo credentials (for development only):
-- Admin: `admin` / `admin123`
+- Admin: `admin2` / `admin123`
 - User: `john_doe` / `password123`
 
 ## Project structure (high level)

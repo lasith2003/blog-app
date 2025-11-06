@@ -1,6 +1,5 @@
 /**
  * BLOG HUT - Comments JavaScript (AJAX)
- * University of Moratuwa - IN2120 Web Programming Project
  */
 
 (function() {

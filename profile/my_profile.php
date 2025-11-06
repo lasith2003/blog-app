@@ -1,12 +1,6 @@
 <?php
 /**
  * BLOG HUT - My Profile Page
- * This page displays the logged-in user's profile with:
- * - Profile information
- * - Statistics (posts, views, reactions, comments)
- * - Earned badges
- * - Recent posts
- * - Edit profile button
  */
 
 // Start session

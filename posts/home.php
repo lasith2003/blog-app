@@ -1,13 +1,6 @@
 <?php
 /**
  * BLOG HUT - Blog Listing Page
- * This page displays all published blog posts with:
- * - Pagination
- * - Category filtering
- * - Search functionality
- * - Sorting options
- * - Post cards with metadata
- * - Responsive grid layout
  */
 
 // Start session

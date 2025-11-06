@@ -1,14 +1,6 @@
 <?php
 /**
  * BLOG HUT - Create New Blog Post
- * This page allows users to create new blog posts with:
- * - Rich text editor
- * - Featured image upload
- * - Category selection
- * - Summary/excerpt
- * - Draft or publish option
- * - Form validation
- * - Badge assignment (First Post)
  */
 
 // Start session

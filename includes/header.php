@@ -1,11 +1,6 @@
 <?php
 /**
  * BLOG HUT - Site Header
- * This file contains the site header with:
- * - HTML head section
- * - Navigation bar
- * - User menu
- * - Theme toggle
  */
 
 // Start session if not already started

@@ -1,12 +1,6 @@
 <?php
 /**
  * BLOG HUT - View User Profile (Public)
- * This page displays any user's public profile:
- * - Profile information
- * - Statistics
- * - Public badges
- * - Published posts only
- * - Pagination
  */
 
 // Start session

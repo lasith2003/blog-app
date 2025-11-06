@@ -1,10 +1,5 @@
 /**
  * BLOG HUT - Login/Auth Pages JavaScript
- * Handles:
- * - Password visibility toggle
- * - Form validation
- * - Password strength indicator
- * - Real-time validation feedback
  */
 
 (function() {

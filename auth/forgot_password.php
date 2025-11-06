@@ -1,10 +1,6 @@
 <?php
 /**
  * BLOG HUT - Forgot Password
- * This file handles password recovery with:
- * - Email validation
- * - Password reset (simplified version)
- * - Security questions (optional)
  */
 
 // Start session

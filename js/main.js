@@ -1,12 +1,5 @@
 /**
  * BLOG HUT - Main JavaScript
- * Handles:
- * - Theme toggle (dark/light mode)
- * - Scroll to top button
- * - Navbar scroll effect
- * - Auto-hide alerts
- * - Smooth scrolling
- * - Image lazy loading
  */
 
 (function() {

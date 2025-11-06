@@ -1,12 +1,6 @@
 <?php
 /**
  * BLOG HUT - User Registration
- * This file handles user registration with:
- * - Form validation
- * - Password hashing
- * - Username/email uniqueness check
- * - Automatic login after registration
- * - Badge assignment (Newcomer)
  */
 
 // Start session

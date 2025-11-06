@@ -1,12 +1,6 @@
 <?php
 /**
  * BLOG HUT - My Blog Posts
- * This page displays all blog posts by the logged-in user:
- * - Published and draft posts
- * - Post statistics
- * - Edit/Delete actions
- * - Pagination
- * - Filter by status
  */
 
 // Start session

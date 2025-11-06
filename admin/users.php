@@ -1,13 +1,6 @@
 <?php
 /**
  * BLOG HUT - Admin User Management
- * Manage all users:
- * - View all users
- * - Search users
- * - Filter by role
- * - Change user role
- * - Delete users
- * - Pagination
  */
 
 // Start session

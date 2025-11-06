@@ -1,14 +1,6 @@
 <?php
 /**
  * BLOG HUT - View Single Blog Post
- * This page displays a single blog post with:
- * - Full post content
- * - Author information
- * - Reactions (like, love, etc.) - AJAX
- * - Comments section - AJAX
- * - Share buttons
- * - Related posts
- * - Edit/Delete options (for owner)
  */
 
 // Start session

@@ -1,12 +1,6 @@
 <?php
 /**
  * BLOG HUT - Delete Blog Post
- * This script handles blog post deletion with:
- * - Permission verification (owner or admin only)
- * - Cascade deletion of related data
- * - Featured image deletion from server
- * - Confirmation before deletion
- * - Redirect after completion
  */
 
 // Start session

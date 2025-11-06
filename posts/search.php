@@ -1,14 +1,6 @@
 <?php
 /**
  * BLOG HUT - Advanced Search Page
- * This page provides advanced search functionality with:
- * - Full-text search across title, content, summary
- * - Category filtering
- * - Date range filtering
- * - Author search
- * - Sort options
- * - Search suggestions
- * - Results pagination
  */
 
 // Start session

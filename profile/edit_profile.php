@@ -1,13 +1,6 @@
 <?php
 /**
  * BLOG HUT - Edit Profile Page
- * This page allows users to edit their profile:
- * - Update username
- * - Update email
- * - Update bio
- * - Change profile picture
- * - Change password
- * - Form validation
  */
 
 // Start session

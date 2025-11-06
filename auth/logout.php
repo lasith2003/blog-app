@@ -1,11 +1,6 @@
 <?php
 /**
  * BLOG HUT - User Logout
- * This file handles user logout with:
- * - Session destruction
- * - Cookie removal (remember me)
- * - Redirect to login page
- * - Security confirmation
  */
 
 // Start session

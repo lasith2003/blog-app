@@ -1,14 +1,6 @@
 <?php
 /**
  * BLOG HUT - Admin Post Management
- * Manage all blog posts:
- * - View all posts
- * - Filter by status/category
- * - Search posts
- * - Delete posts
- * - View/Edit any post
- * - Change post status
- * - Pagination
  */
 
 // Start session

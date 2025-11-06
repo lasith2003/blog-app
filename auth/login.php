@@ -1,13 +1,6 @@
 <?php
 /**
  * BLOG HUT - User Login
- * This file handles user authentication with:
- * - Email/username login support
- * - Password verification
- * - Remember me functionality
- * - Session management
- * - Failed login attempt tracking
- * - Redirect to intended page after login
  */
 
 // Start session

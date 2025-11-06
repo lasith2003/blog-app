@@ -1,14 +1,6 @@
 <?php
 /**
  * BLOG HUT - Landing Page
- * This is the main landing page featuring:
- * - Hero section with call-to-action
- * - Featured/trending posts
- * - Latest posts preview
- * - Categories showcase
- * - Site statistics
- * - About section
- * - Modern, responsive design
  */
 
 // Start session

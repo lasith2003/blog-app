@@ -1,13 +1,6 @@
 <?php
 /*
  * BLOG HUT - Site Footer
-
- * This file contains:
- * - Footer content
- * - Copyright information
- * - Social media links
- * - JavaScript includes
- * - Theme toggle functionality
  */
 ?>
 

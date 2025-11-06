@@ -1,13 +1,6 @@
 <?php
 /**
  * BLOG HUT - Post Functions
- * This file contains all blog post related functions:
- * - Fetch posts with filters
- * - Get post details
- * - Create, update, delete posts
- * - Get post statistics
- * - Handle reactions and comments count
- * - Category management
  */
 
 // Include required files
